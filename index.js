@@ -4,4 +4,16 @@ let capitalize = function (str) {
 
   return word;
 };
-module.exports = { capitalize };
+
+let reverseString = (str) => {
+  let word = "";
+  let index = str.length - 1;
+  while (index >= 0) {
+    let newLetter = str.charAt(index);
+    word += newLetter;
+    index -= 1;
+  }
+  return word;
+};
+
+module.exports = { capitalize, reverseString };
