@@ -31,4 +31,48 @@ let calculator = {
   },
 };
 
-module.exports = { capitalize, reverseString, calculator };
+let test_letter = (letter) => {
+  let letters = /^[a-zA-Z]$/;
+  let test_letter = letters.test(letter);
+  if (test_letter) {
+    return letter.charCodeAt(0);
+  }
+  return null;
+};
+
+let encrypt = (letter_num, shift) => {
+  let encr_number;
+
+  // uppercase
+  if (letter_num <= 90) {
+    encr_number = (letter_num + shift) % 90;
+    if (encr_number === 0) encr_number += 90;
+    if (encr_number < 65) encr_number += 64;
+  } else {
+    // lowercase
+    encr_number = (letter_num + shift) % 122;
+    if (encr_number === 0) encr_number += 122;
+    if (encr_number < 97) encr_number += 96;
+  }
+  return encr_number;
+};
+
+let caesarCipher = (str, shift) => {
+  let cipher = "";
+
+  for (let i = 0; i < str.length; i++) {
+    let original_letter = str.charAt(i);
+    let char_number = test_letter(original_letter);
+    if (char_number === null) {
+      cipher += original_letter;
+      continue;
+    }
+    let letter_num = encrypt(original_letter.charCodeAt(0), shift);
+    let letter = String.fromCharCode(letter_num);
+    cipher += letter;
+  }
+
+  return cipher;
+};
+
+module.exports = { capitalize, reverseString, calculator, caesarCipher };
