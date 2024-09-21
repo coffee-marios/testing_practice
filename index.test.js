@@ -3,6 +3,7 @@ const {
   reverseString,
   calculator,
   caesarCipher,
+  analyzeArray,
 } = require("./index.js");
 
 test("Capitalize the first letter", () => {
@@ -40,7 +41,7 @@ describe("Calulator's basic operations", () => {
   });
 });
 
-describe("caesarCipher: Encrypt a string with Shift Cipher", () => {
+describe("caesarCiphe: Encrypt a string with Shift Cipher", () => {
   test("Shift a small letter", () => {
     expect(caesarCipher("abc", 1)).toBe("bcd");
   });
@@ -59,5 +60,33 @@ describe("caesarCipher: Encrypt a string with Shift Cipher", () => {
   });
   test("Retain spaces and punctuations", () => {
     expect(caesarCipher("Hello, World!", 3)).toBe("Khoor, Zruog!");
+  });
+});
+
+describe("Analyze the values of an array", () => {
+  test("Average value 1", () => {
+    expect(analyzeArray([10, 20, 30]).average).toBe(20);
+  });
+  test("Average value 2", () => {
+    expect(analyzeArray([1, 8, 3, 4, 2, 6]).average).toBe(4);
+  });
+  test("Minimum value 1", () => {
+    expect(analyzeArray([34, 11, 10, 20, 30]).min).toBe(10);
+  });
+  test("Minimum value 2", () => {
+    expect(analyzeArray([1, 8, 3, 4, 2, 6]).min).toBe(1);
+  });
+
+  test("Maximum value 1", () => {
+    expect(analyzeArray([34, 11, 10, 20, 30]).max).toBe(34);
+  });
+  test("Maximum value 2", () => {
+    expect(analyzeArray([1, 8, 3, 4, 2, 6]).max).toBe(8);
+  });
+  test("Length of array 1", () => {
+    expect(analyzeArray([34, 11, 10, 20, 30]).length).toBe(5);
+  });
+  test("Length of array 2", () => {
+    expect(analyzeArray([1, 8, 3, 4, 2, 6]).length).toBe(6);
   });
 });
